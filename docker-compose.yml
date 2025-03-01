@@ -1,0 +1,20 @@
+# helps running multiple services like Postgres, Redis, etc. in a single command along with Django
+services:
+  eccomerce-api-dev:
+    build:
+      context: .
+      target: dev
+    image: eccomerceapi-dev:latest
+    container_name: eccomerceapi-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    networks:
+      - eccomerceapi-dev
+
+networks:
+  eccomerceapi-dev:
+    name: eccomerceapi-dev
